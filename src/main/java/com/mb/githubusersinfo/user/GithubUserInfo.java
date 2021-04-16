@@ -1,4 +1,4 @@
-package com.mb.GithubUsersInfo;
+package com.mb.githubusersinfo.user;
 
 public class GithubUserInfo
 {
@@ -11,7 +11,7 @@ public class GithubUserInfo
     int followers;
     int public_repos;
 
-    public ServiceUserInfo getUserInfo()
+    public CalculatedUserInfo getCalculatedUserInfo()
     {
         float calculations = (float) 6.0 / followers * (2 + public_repos);
         try
@@ -22,7 +22,7 @@ public class GithubUserInfo
         {
             calculations = -1;
         }
-        return new ServiceUserInfo(id, login, name, type, avatar_url, created_at, calculations);
+        return new CalculatedUserInfo(id, login, name, type, avatar_url, created_at, calculations);
     }
 
     @Override

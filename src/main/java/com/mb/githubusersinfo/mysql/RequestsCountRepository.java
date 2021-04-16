@@ -1,4 +1,4 @@
-package com.mb.GithubUsersInfo.mysql;
+package com.mb.githubusersinfo.mysql;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,9 +1,11 @@
-package com.mb.GithubUsersInfo;
+package com.mb.githubusersinfo;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mb.GithubUsersInfo.mysql.RequestsCount;
-import com.mb.GithubUsersInfo.mysql.RequestsCountRepository;
+import com.mb.githubusersinfo.mysql.RequestsCount;
+import com.mb.githubusersinfo.mysql.RequestsCountRepository;
+import com.mb.githubusersinfo.user.CalculatedUserInfo;
+import com.mb.githubusersinfo.user.GithubUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +22,6 @@ public class UsersInfoController
 {
 	@Autowired
 	private RequestsCountRepository requestsCountRepository;
-
 	private final RestService restService = new RestService(new RestTemplateBuilder());
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -30,7 +31,7 @@ public class UsersInfoController
 	}
 
 	@GetMapping("/users/{login}")
-	public ServiceUserInfo userInfo(@PathVariable String login) throws IOException
+	public CalculatedUserInfo userInfo(@PathVariable String login) throws IOException
 	{
 		// increase count in db
 		if(requestsCountRepository.existsByLogin(login))
@@ -54,7 +55,7 @@ public class UsersInfoController
 		GithubUserInfo githubUserInfo = objectMapper.readValue(userInfoString, GithubUserInfo.class);
 		//System.out.println(githubUserInfo);
 
-		ServiceUserInfo userInfo = githubUserInfo.getUserInfo();
+		CalculatedUserInfo userInfo = githubUserInfo.getCalculatedUserInfo();
 		//System.out.println(userInfo);
 		return userInfo;
 	}

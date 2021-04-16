@@ -1,8 +1,6 @@
-package com.mb.GithubUsersInfo;
+package com.mb.githubusersinfo.user;
 
-import java.util.Objects;
-
-public class ServiceUserInfo
+public class CalculatedUserInfo
 {
     int id;
     String login;
@@ -12,7 +10,7 @@ public class ServiceUserInfo
     String createdAt;
     float calculations;
 
-    public ServiceUserInfo(int id, String login, String name, String type, String avatarUrl, String createdAt, float calculations)
+    public CalculatedUserInfo(int id, String login, String name, String type, String avatarUrl, String createdAt, float calculations)
     {
         this.id = id;
         this.login = login;
